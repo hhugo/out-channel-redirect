@@ -1,3 +1,9 @@
+# Unreleased
+
+- Windows: keep the HANDLEs originally attached to stdin, stdout and stderr
+  valid across redirections, so that `Unix.stdout` and `Unix.stderr` remain
+  usable (see mirage/alcotest#443)
+
 # 0.2 (2026-05-19)
 
 - Add `capture_channels` and `capture_channels_interleaved` for capturing

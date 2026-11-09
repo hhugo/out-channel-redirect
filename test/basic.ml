@@ -310,3 +310,25 @@ let () =
         Printf.eprintf "restored%!")
   in
   expect ~here:__LOC__ ~expected:"restored" s
+
+(* On Windows, handles cached from the standard fds before any redirection
+   (as [Unix.stdout] and [Unix.stderr] do) must remain valid, both during and
+   after a capture. *)
+let () =
+  let check ~here =
+    if not (Out_channel_redirect_test_helper.std_handles_valid ()) then (
+      Printf.eprintf "%s\nstandard handles were invalidated\n" here;
+      exit 2)
+  in
+  for _ = 1 to 10 do
+    let _, _, () =
+      Out_channel_redirect.capture_outputs ~f:(fun () ->
+          check ~here:__LOC__;
+          let _, () =
+            Out_channel_redirect.capture_stdout ~f:(fun () ->
+                check ~here:__LOC__)
+          in
+          check ~here:__LOC__)
+    in
+    check ~here:__LOC__
+  done

@@ -8,3 +8,6 @@ external out_channel_redirect_print_stdout : unit -> unit
 
 external out_channel_redirect_print_stderr : unit -> unit
   = "out_channel_redirect_print_stderr"
+
+external std_handles_valid : unit -> bool
+  = "out_channel_redirect_std_handles_valid"
