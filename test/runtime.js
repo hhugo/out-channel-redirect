@@ -27,3 +27,8 @@ function out_channel_redirect_print_stderr(unit) {
   caml_ml_output(out_channel_redirect_stderr, s, 0, caml_ml_string_length(s));
   return 0
 }
+
+//Provides: out_channel_redirect_std_handles_valid
+function out_channel_redirect_std_handles_valid(unit) {
+  return 1;
+}

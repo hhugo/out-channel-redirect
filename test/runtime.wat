@@ -49,4 +49,7 @@
                   (i32.const 0) (i32.const 20)))))
       (ref.i31 (i32.const 0)))
 
+   (func (export "out_channel_redirect_std_handles_valid")
+      (param (ref eq)) (result (ref eq))
+      (ref.i31 (i32.const 1)))
 )
